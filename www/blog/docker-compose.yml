@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+
+  pelican: 
+    build: .
+    container_name: pelican
+    restart: always
+    hostname: 'pelican.localhost'
+    volumes:
+      - pelican_content:/pelican/content
+      - pelican_output:/pelican/output
+    ports:
+      - '8089:8000'
+
+volumes:
+  pelican_output:
+    name: pelican_output
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/vagrant/www/blog/output
+  
+  pelican_content:
+    name: pelican_content
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/vagrant/www/blog/content
+
