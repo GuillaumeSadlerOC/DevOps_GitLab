@@ -12,6 +12,8 @@ build:
   script:
     # we use pelican command for transform markdown in output
     - pelican content -o output -s pelicanconf.py
+  # Build job manually
+  when: manual
   artifacts:
     paths:
       # We extract the result (html files)
