@@ -12,7 +12,6 @@ services:
         external_url 'http://gitlab-web:8088'
     ports:
       - '8088:8088' # Same port 8088 here and in external_url !
-      - '2222:2222'
     volumes:
       - "gitlab_web_data:/var/opt/gitlab"
       - "gitlab_web_logs:/var/log/gitlab"
@@ -38,7 +37,6 @@ networks:
     name: gitlab-network
 
 volumes:
-
   gitlab_web_data:
     driver: local
     driver_opts:

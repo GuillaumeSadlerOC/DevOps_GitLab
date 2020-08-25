@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+
+  nginx: 
+    image: nginx:stable
+    container_name: nginx
+    restart: always
+    hostname: 'nginx.localhost'
+    volumes:
+      - ./volumes/config/nginx.conf:/etc/nginx/nginx.conf
+      - nginx_logs:/logs
+      - nginx_html:/usr/share/nginx/html:ro
+    ports:
+      - '8089:8089'
+    networks:
+      - nginx-network
+
+networks:
+  nginx-network:
+    name: nginx-network
+
+volumes:
+    
+  nginx_logs:
+    name: nginx_logs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/vagrant/nginx/volumes/logs
+
+  nginx_html:
+    name: nginx_html
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/vagrant/nginx/volumes/html

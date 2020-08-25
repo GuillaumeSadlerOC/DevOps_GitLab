@@ -1,0 +1,18 @@
+# This gitlab-ci use pelican to transform markdown file to html
+image: ubuntu:20.10
+
+before_script:
+  # Update and install all dependencies
+  # -qq : No output except for errors
+  - apt update -qq && apt install -y -qq python3-pip
+  - pip install pelican markdown
+
+build:
+  stage: build
+  script:
+    # we use pelican command for transform markdown in output
+    - pelican content -o output -s pelicanconf.py
+  artifacts:
+    paths:
+      # We extract the result (html files)
+      - output

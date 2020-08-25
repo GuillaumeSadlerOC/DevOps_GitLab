@@ -32,9 +32,8 @@ usermod -aG docker vagrant
 # Install NFS requirements
 sudo apt install nfs-common portmap
 
-# Git
-git config --global user.email "guillaume.sadler@gmail.com"
-git config --global user.name "Guillaume Sadler"
-
 # GitLab and GitLab Runner
 docker-compose -f /home/vagrant/gitlab/docker-compose.yml up -d --build
+
+# NGINX
+docker-compose -f /home/vagrant/nginx/docker-compose.yml up -d --build

@@ -11,7 +11,6 @@ Vagrant.configure("2") do |config|
   ## FORWARDED PORTS
   # GITLAB RESERVED 
   config.vm.network "forwarded_port", guest: 8088, host: 8088
-  config.vm.network "forwarded_port", guest: 2222, host: 2222
   # OPEN PORTS
   config.vm.network "forwarded_port", guest: 8089, host: 8089
 
@@ -28,6 +27,14 @@ Vagrant.configure("2") do |config|
     :map_gid => 0
 
   config.vm.synced_folder "gitlab", "/home/vagrant/gitlab", 
+    type: "nfs",
+    nfs_version: 4,
+    mount_options: ['actimeo=2'],
+    linux__nfs_options: ['rw', 'no_root_squash'], 
+    :map_uid => 0, 
+    :map_gid => 0
+
+  config.vm.synced_folder "nginx", "/home/vagrant/nginx", 
     type: "nfs",
     nfs_version: 4,
     mount_options: ['actimeo=2'],

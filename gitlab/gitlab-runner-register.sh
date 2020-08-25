@@ -1,11 +1,13 @@
 #!/bin/sh
+
+# Don't forget to change the registration token !
 # Get the registration token from:
-# http://gitlab:8088/root/${project}/settings/ci_cd
+# http://${gitlab-url}:${port}/root/${project}/settings/ci_cd
 
 docker exec -it gitlab-runner \
   gitlab-runner register \
     --non-interactive \
-    --registration-token Jr4KKP72yPACj9EysvGp \
+    --registration-token emx6-zNw7ayYNB-V_jFW \
     --locked=false \
     --url http://gitlab-web:8088/ \
     --clone-url http://gitlab-web:8088/ \
